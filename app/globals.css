@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #d4af37;
+  --gold-light: #f0e68c;
+  --gold-dark: #b8860b;
+  --deep-green: #013220;
+  --royal-blue: #002366;
+  --silver: #c0c0c0;
+  --soft-pink: #f9d5e5;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+    overflow-x: hidden;
+  }
+
+  .font-cormorant {
+    font-family: var(--font-cormorant);
+  }
+
+  .font-manrope {
+    font-family: var(--font-manrope);
+  }
+}
+
+@layer components {
+  .text-gold {
+    color: var(--gold);
+  }
+
+  .bg-gold {
+    background-color: var(--gold);
+  }
+
+  .border-gold {
+    border-color: var(--gold);
+  }
+
+  .gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-shimmer::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+
+  .luxury-button {
+    @apply relative overflow-hidden bg-transparent border-2 border-gold text-gold px-6 py-3 font-cormorant text-lg uppercase tracking-wider transition-all duration-300;
+  }
+
+  .luxury-button:hover {
+    @apply bg-gold text-black;
+  }
+
+  .luxury-button::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-gold opacity-0 transition-opacity duration-300;
+    z-index: -1;
+  }
+
+  .luxury-button:hover::before {
+    @apply opacity-100;
+  }
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--gold);
+    opacity: 0;
+    animation: sparkle 2s linear infinite;
+  }
+
+  @keyframes sparkle {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-light);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .neon-glow:hover {
+    box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-light), 0 0 45px var(--gold);
+  }
+}
+
